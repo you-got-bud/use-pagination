@@ -4,7 +4,7 @@ A simple hook for paginating data
 
 ## Example
 
-```typescript
+```tsx
 import React, {FC} from 'react';
 import clsx from 'clsx';
 import {usePagination} from '@you-got-bud/use-pagination';
