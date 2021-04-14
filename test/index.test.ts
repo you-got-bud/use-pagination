@@ -1,5 +1,5 @@
-import { act, cleanup, renderHook } from '@testing-library/react-hooks/native';
-import { usePagination, UsePaginationProps } from '../src/index';
+import {act, cleanup, renderHook} from '@testing-library/react-hooks/native';
+import {usePagination, UsePaginationProps} from '../src/index';
 
 const props: UsePaginationProps<number> = {
   data: [...Array(100).keys()],
@@ -10,14 +10,14 @@ const props: UsePaginationProps<number> = {
 afterEach(cleanup);
 describe('usePagination', () => {
   it('jumps to next page', () => {
-    const { result } = renderHook(() => usePagination(props));
+    const {result} = renderHook(() => usePagination(props));
     act(() => {
       result.current.next();
     });
     expect(result.current.data[0]).toBe(50);
   });
   it('jumps to the last page', () => {
-    const { result } = renderHook(() => usePagination(props));
+    const {result} = renderHook(() => usePagination(props));
     act(() => {
       result.current.last();
     });
@@ -26,7 +26,7 @@ describe('usePagination', () => {
     expect(result.current.hasLess).toBe(true);
   });
   it('jumps to the first page', () => {
-    const { result } = renderHook(() => usePagination(props));
+    const {result} = renderHook(() => usePagination(props));
     act(() => {
       result.current.first();
     });
