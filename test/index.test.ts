@@ -34,4 +34,20 @@ describe('usePagination', () => {
     expect(result.current.hasLess).toBe(false);
     expect(result.current.hasMore).toBe(true);
   });
+  it('Sets the inital page', () => {
+    const {result} = renderHook(() =>
+      usePagination({...props, initialPage: 2})
+    );
+    expect(result.current.data[0]).toBe(50);
+  });
+  it('Handles out of bounds pages', () => {
+    const {result} = renderHook(() =>
+      usePagination({...props, initialPage: -1})
+    );
+    expect(result.current.data[0]).toBe(0);
+    act(() => {
+      result.current.jump(100);
+    });
+    expect(result.current.data[0]).toBe(50);
+  });
 });

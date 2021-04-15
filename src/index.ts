@@ -28,6 +28,11 @@ export interface UsePaginationProps<T> {
    * @default true
    */
   scrollToTop?: boolean;
+  /**
+   * The page to start on
+   * @default 1
+   */
+  initialPage?: number;
 }
 
 export type UsePagnination = <T>(
@@ -38,9 +43,10 @@ export const usePagination: UsePagnination = ({
   data,
   perPage = 30,
   scrollToTop = true,
+  initialPage = 1,
 }) => {
-  const [page, setPage] = useState(1);
   const maxPage = Math.ceil((data?.length ?? 0) / perPage);
+  const [page, setPage] = useState(Math.min(maxPage, Math.max(1, initialPage)));
   const begin = (page - 1) * perPage;
   const end = begin + perPage;
   const resetScroll = () => {
