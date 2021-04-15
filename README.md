@@ -95,5 +95,10 @@ export interface UsePaginationProps<T> {
    * @default true
    */
   scrollToTop?: boolean;
+  /**
+   * The page to start on
+   * @default 1
+   */
+  initialPage?: number;
 }
 ```
